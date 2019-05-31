@@ -6,6 +6,7 @@ import view.TelaLogin;
 
 import controller.Controller;
 
+//Mensagem de teste
 public class App {
 	public static void main(String[] args) {
 		
