@@ -1,63 +1,57 @@
 package controller;
 
-//Fazer interligação com o BD e nao com a Base de dados
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
-import model.BaseDados;
-import model.Usuario;
-import view.TelaCadastrarCliente;
-import view.TelaSistema;
-import view.TelaLogin;
-
+import model.*;
+import view.*;
 
 public class Controller implements ActionListener {
 	
-	BaseDados baseDados;
-	Usuario usuario;
+	Conexao conexao;
 	
-	private TelaSistema telaSistema;
-	private TelaLogin telaLogin;
-	TelaCadastrarCliente telaCadastrarCliente;
+	TelaLogin telaLogin;
+	TelaSistema telaSistema;
 	
-	public Controller(BaseDados baseDados, TelaLogin telaLogin){		
-		this.baseDados = baseDados;
-		this.telaLogin = telaLogin;
+	public Controller() {
+		
+		telaLogin = new TelaLogin();
 		telaSistema = new TelaSistema();
-		telaCadastrarCliente = new TelaCadastrarCliente();
+		telaLogin.setVisible(true);
 		controll();
+		
 	}
 	
 	public void controll() {
+		
+		telaLogin.getSairButton().addActionListener(this);
 		telaLogin.getEntrarButton().addActionListener(this);
-		telaSistema.getSairButton().addActionListener(this);
-		telaSistema.getCadastrarCliente().addActionListener(this);
+		
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if (e.getSource() == telaLogin.getEntrarButton()) {
-			if (BaseDados.isUsuario(new Usuario(telaLogin.getNomeField().getText(), telaLogin.getSenhaField().getText()))) {
-				telaSistema.setVisible(true);
-				telaLogin.setVisible(false);
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Usuario Inválido");
-			}
-		}
-		else if (e.getSource() == telaLogin.getSairButton()) {
+		if (e.getSource() == telaLogin.getSairButton()) {
 			System.exit(0);
 		}
 		
-		if (e.getSource() == telaSistema.getCadastrarCliente()) {
-			telaCadastrarCliente.setVisible(true);
+		else if (e.getSource() == telaLogin.getEntrarButton()) {
+			
+			Usuario usuario = new Usuario(telaLogin.getNomeField().getText(), telaLogin.getSenhaField().getText());
+			
+			try {
+				Read.buscarUsuario(usuario);
+				telaLogin.setVisible(false);
+				telaSistema.setVisible(true);
+				ExibirMensagem.Mensagem("Logado!");
+			} catch (SQLException e1) {
+				ExibirMensagem.Mensagem("erro: "+e1);
+			}
 		}
-		else if (e.getSource() == telaSistema.getSairButton()) {
-			System.exit(0);
-		}
+		
 	}
-
+	
 }

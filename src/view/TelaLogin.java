@@ -37,7 +37,7 @@ public class TelaLogin extends JFrame{
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		setResizable(false);
-		setVisible(true);
+		setVisible(false);
 		
 		panel.add(entrarButton);
 		panel.add(sairButton);
