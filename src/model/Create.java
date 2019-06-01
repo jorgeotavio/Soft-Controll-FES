@@ -77,9 +77,9 @@ public class Create {
         preparedStatement.close();
         
         if (registros == 1)
-            return true; 
-        else 
-            return false; 
+            return true;
+        else
+            return false;
 	}
 
 	public static boolean addItem(Item item) throws SQLException {

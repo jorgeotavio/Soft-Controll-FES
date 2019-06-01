@@ -6,6 +6,7 @@ import java.awt.Panel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -13,7 +14,8 @@ public class TelaLogin extends JFrame{
 	
 	private JLabel  nomeLabel, senhaLabel;
 	private JButton entrarButton, sairButton;
-	private JTextField nomeField, senhaField;
+	private JTextField nomeField;
+	private JPasswordField senhaField;
 	private Panel   panel, panel2, panel3;
 
 	public TelaLogin() {
@@ -27,7 +29,7 @@ public class TelaLogin extends JFrame{
 		entrarButton = new JButton("Entrar");
 		sairButton   = new JButton("Sair");
 		nomeField    = new JTextField(10);
-		senhaField   = new JTextField(10);
+		senhaField   = new JPasswordField(10);
 		panel        = new Panel();
 		panel2       = new Panel();
 		panel3       = new Panel();

@@ -13,6 +13,7 @@ public class Controller implements ActionListener {
 	
 	TelaLogin telaLogin;
 	TelaSistema telaSistema;
+	TelaCadastrarUsuario telaCadastrarUsuario;
 	
 	public Controller() {
 		
@@ -27,6 +28,10 @@ public class Controller implements ActionListener {
 		
 		telaLogin.getSairButton().addActionListener(this);
 		telaLogin.getEntrarButton().addActionListener(this);
+		
+		telaSistema.getSairButton().addActionListener(this);
+		telaSistema.getCadastrarUsuario().addActionListener(this);
+		telaSistema.getCadastrarTema().addActionListener(this);
 		
 	}
 
@@ -43,13 +48,30 @@ public class Controller implements ActionListener {
 			Usuario usuario = new Usuario(telaLogin.getNomeField().getText(), telaLogin.getSenhaField().getText());
 			
 			try {
+				
 				Read.buscarUsuario(usuario);
 				telaLogin.setVisible(false);
 				telaSistema.setVisible(true);
 				ExibirMensagem.Mensagem("Logado!");
+				Destrutor.Destroyer(usuario);
+				
 			} catch (SQLException e1) {
-				ExibirMensagem.Mensagem("erro: "+e1);
+				ExibirMensagem.Mensagem("Usuario não encontrado");
 			}
+		}
+		
+		if (e.getSource() == telaSistema.getSairButton()) {
+			System.exit(0);
+		}else if (e.getSource() == telaSistema.getCadastrarTema()) {
+			
+			TelaCadastrarTema telaCadastrarTema = new TelaCadastrarTema();
+			telaCadastrarTema.setVisible(true);
+			
+		}else if (e.getSource() == telaSistema.getCadastrarUsuario()) {
+			
+			telaCadastrarUsuario = new TelaCadastrarUsuario();
+			telaCadastrarUsuario.setVisible(true);
+			
 		}
 		
 	}

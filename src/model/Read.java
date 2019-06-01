@@ -22,4 +22,21 @@ public class Read {
 		
 		return user;
 	}
+	
+	public static Usuario buscarTema(Tema tema) throws SQLException {
+			
+		Conexao conexao = new Conexao();
+		
+		String comando = "SELECT NOME, SENHA FROM TEMAS WHERE NOME = ?";
+		
+		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+		
+		preparedStatement.setString(1, tema.getNome());
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
+		
+		return user;
+	}
 }

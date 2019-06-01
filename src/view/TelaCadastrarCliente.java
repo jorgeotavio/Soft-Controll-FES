@@ -10,7 +10,6 @@ public class TelaCadastrarCliente extends JFrame{
 		setSize(400, 400);
 		setLocationRelativeTo(null);
 		setResizable(false);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	
