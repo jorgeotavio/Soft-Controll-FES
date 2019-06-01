@@ -1,31 +1,19 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Tema {
 	
-	private String nomeTema;
-	private static ArrayList<Item> itens = new ArrayList<>();
+	private String nome;
 	
-	public Tema(String nomeTema) {
-		this.nomeTema = nomeTema;
+	public Tema(String nome) {
+		this.nome = nome;
 	}
 	
-	public void cadastrarItem(String nome, Item item) {
-		itens.add(item);
+	public String getNome() {
+		return nome;
 	}
 
-	public String getNomeTema() {
-		return nomeTema;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setNomeTema(String nomeTema) {
-		this.nomeTema = nomeTema;
-	}
-
-	public static ArrayList<Item> getItens() {
-		return itens;
-	}
-	
-	
 }

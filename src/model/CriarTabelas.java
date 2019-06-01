@@ -26,7 +26,7 @@ public class CriarTabelas {
 		
 		statement.execute("CREATE TABLE IF NOT EXISTS FESTAS("
 						+ "ID 		INTEGER primary key autoincrement,"
-						+ "TEMA_ID 	INTEGER,"
+						+ "TEMA 	VARCHAR,"
 						+ "ENDERECO VARCHAR,"
 						+ "DATA		DATE,"
 						+ "VALOR	FLOAT,"
@@ -37,7 +37,7 @@ public class CriarTabelas {
 		statement.execute("CREATE TABLE IF NOT EXISTS CLIENTES("
 						+ "ID 		INTEGER primary key autoincrement,"
 						+ "NOME 	VARCHAR,"
-						+ "TELEFONE INTEGER,"
+						+ "TELEFONE	INTEGER,"
 						+ "ANTIGO 	BOOLEAN"
 						+ ")");
 		

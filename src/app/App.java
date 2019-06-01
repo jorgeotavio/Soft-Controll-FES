@@ -7,7 +7,7 @@ public class App {
 	
 	public static Conexao conexao;
 	public static void main(String[] args) throws SQLException {
-		
 		conexao = new Conexao();
+		
 	}
 }

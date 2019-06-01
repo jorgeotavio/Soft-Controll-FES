@@ -2,28 +2,28 @@ package model;
 
 public class Item {
 	
-	private String nomeItem;
-	private int quantidadeItem;
+	private String nome;
+	private int quantidade;
 	
-	public Item(String nomeItem, int quantidadeItem) {
-		this.nomeItem = nomeItem;
-		this.quantidadeItem = quantidadeItem;
+	public Item(String nome, int quantidade) {
+		this.nome = nome;
+		this.quantidade = quantidade;
 	}
 
-	public String getNomeItem() {
-		return nomeItem;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeItem(String nomeItem) {
-		this.nomeItem = nomeItem;
+	public void setNome(String nome) {
+		this.nome= nome;
 	}
 
-	public int getQuantidadeItem() {
-		return quantidadeItem;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantidadeItem(int quantidadeItem) {
-		this.quantidadeItem = quantidadeItem;
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 	
 }

@@ -1,16 +1,17 @@
 package model;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Festa {
 	
-	private Tema tema;
+	private String tema;
 	private String endereco;
 	private Date data;
 	private double valor;
-	private int hora0, hora1;
+	private Time hora0, hora1;
 	
-	public Festa(Tema tema, String endereco, int hora0, int hora1, Date data, double valor) {
+	public Festa(String tema, String endereco, Time hora0, Time hora1, Date data, double valor) {
 		this.tema     = tema;
 		this.endereco = endereco;
 		this.hora0    = hora0;
@@ -20,11 +21,11 @@ public class Festa {
 		
 	}
 
-	public Tema getTema() {
+	public String getTema() {
 		return tema;
 	}
 
-	public void setTema(Tema tema) {
+	public void setTema(String tema) {
 		this.tema = tema;
 	}
 
@@ -52,19 +53,19 @@ public class Festa {
 		this.valor = valor;
 	}
 
-	public int getHora0() {
+	public Time getHora0() {
 		return hora0;
 	}
 
-	public void setHora0(int hora0) {
+	public void setHora0(Time hora0) {
 		this.hora0 = hora0;
 	}
 
-	public int getHora1() {
+	public Time getHora1() {
 		return hora1;
 	}
 
-	public void setHora1(int hora1) {
+	public void setHora1(Time hora1) {
 		this.hora1 = hora1;
 	}
 	
