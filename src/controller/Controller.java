@@ -1,5 +1,6 @@
 package controller;
 
+//Fazer interligação com o BD e nao com a Base de dados
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
