@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,20 +28,20 @@ public class Create {
 						+ "ID 		INTEGER primary key autoincrement,"
 						+ "TEMA 	VARCHAR,"
 						+ "ENDERECO VARCHAR,"
-						+ "DATA		DATE,"
+						+ "DATA		VARCHAR,"
 						+ "VALOR	FLOAT,"
-						+ "HORA_INI	DATETIME,"
-						+ "HORA_FIN	DATETIME"
+						+ "HORA_INI	VARCHAR,"
+						+ "HORA_FIN	VARCHAR,"
+						+ "CLIENTE 	VARCHAR"
 						+ ")");
 		
 		statement.execute("CREATE TABLE IF NOT EXISTS CLIENTES("
 						+ "ID 		INTEGER primary key autoincrement,"
 						+ "NOME 	VARCHAR,"
-						+ "TELEFONE	INTEGER,"
+						+ "TELEFONE	VARCHAR,"
 						+ "ANTIGO 	BOOLEAN"
 						+ ")");
 		
-		System.out.println("criou");
 	}
 	
 	public static boolean addUsuario(Usuario usuario) throws SQLException {
@@ -57,6 +56,8 @@ public class Create {
       
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();
+        
+        Destrutor.destroyer(conexao);
         
         if (registros == 1)
             return true; 
@@ -75,6 +76,9 @@ public class Create {
       
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();
+        
+        Destrutor.destroyer(conexao);
+        Destrutor.destroyer(preparedStatement);
         
         if (registros == 1)
             return true;
@@ -95,6 +99,9 @@ public class Create {
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();
         
+        Destrutor.destroyer(conexao);
+        Destrutor.destroyer(preparedStatement);
+        
         if (registros == 1)
             return true; 
         else 
@@ -110,13 +117,16 @@ public class Create {
         
         preparedStatement.setString(1, festa.getTema());
         preparedStatement.setString(2, festa.getEndereco());
-        preparedStatement.setDate(3, (Date) festa.getData());
+        preparedStatement.setString(3, festa.getData());
         preparedStatement.setDouble(4, festa.getValor());
-        preparedStatement.setTime(5, festa.getHora0());
-        preparedStatement.setTime(6, festa.getHora1());
+        preparedStatement.setString(5, festa.getHora0());
+        preparedStatement.setString(6, festa.getHora1());
       
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();
+        
+        Destrutor.destroyer(conexao);
+        Destrutor.destroyer(preparedStatement);
         
         if (registros == 1)
             return true; 
@@ -132,11 +142,14 @@ public class Create {
         		conexao.getConnection().prepareStatement("INSERT INTO FESTAS(NOME, TELEFONE, ANTIGO)" + " VALUES (?,?,?)");
         
         preparedStatement.setString(1, cliente.getNome());
-        preparedStatement.setInt(2, cliente.getTelefone());
+        preparedStatement.setString(2, cliente.getTelefone());
         preparedStatement.setBoolean(3, cliente.isAntigo());
       
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();
+        
+        Destrutor.destroyer(conexao);
+        Destrutor.destroyer(preparedStatement);
         
         if (registros == 1)
             return true; 

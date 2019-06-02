@@ -1,19 +1,19 @@
 package model;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class Festa {
 	
-	private String tema;
-	private String endereco;
-	private Date data;
+	private int id;
+	private String tema, hora0, hora1, endereco, data, cliente;
 	private double valor;
-	private Time hora0, hora1;
 	
-	public Festa(String tema, String endereco, Time hora0, Time hora1, Date data, double valor) {
+	public Festa() {
+		
+	}
+	public Festa(int id, String tema, String cliente, String endereco, String  data, double valor, String hora0, String hora1) {
+		this.id 	  = id;
 		this.tema     = tema;
 		this.endereco = endereco;
+		this.cliente  = cliente;
 		this.hora0    = hora0;
 		this.hora1    = hora1;
 		this.data     = data;
@@ -21,12 +21,34 @@ public class Festa {
 		
 	}
 
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTema() {
 		return tema;
 	}
 
 	public void setTema(String tema) {
 		this.tema = tema;
+	}
+
+	public String getHora0() {
+		return hora0;
+	}
+
+	public void setHora0(String hora0) {
+		this.hora0 = hora0;
+	}
+
+	public String getHora1() {
+		return hora1;
+	}
+
+	public void setHora1(String hora1) {
+		this.hora1 = hora1;
 	}
 
 	public String getEndereco() {
@@ -37,11 +59,11 @@ public class Festa {
 		this.endereco = endereco;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -53,22 +75,13 @@ public class Festa {
 		this.valor = valor;
 	}
 
-	public Time getHora0() {
-		return hora0;
+	public String getCliente() {
+		return cliente;
 	}
 
-	public void setHora0(Time hora0) {
-		this.hora0 = hora0;
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
-
-	public Time getHora1() {
-		return hora1;
-	}
-
-	public void setHora1(Time hora1) {
-		this.hora1 = hora1;
-	}
-	
 	
 	
 	

@@ -1,84 +1,125 @@
 package view;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.Color;
 
-@SuppressWarnings("serial")
 public class TelaSistema extends JFrame {
 	
-	private JPanel panel;
-	private JButton sairButton;
 	private JMenuBar menuBar;
-	private JMenu menuOpcoes, menuAjuda;
-	private JMenuItem cadastrarCliente, cadastrarUsuario, cadastrarTema, sobre, cadastrarItens; 
 	
+	private JMenu opcoesMenu, ajudaMenu;
+	
+	private JMenuItem cadastrarUsuario, 
+						cadastrarItem, 
+						cadastrarTema, 
+						sobreMenuItem, 
+						BuscarItem, 
+						buscarTema ;
+	private JTable table;
+
 	public TelaSistema() {
-		super("Soft Controll");
-		criarTela();
-		
-	}
-	
-	private void criarTela() {
-		setSize(400, 400);
-		setLocationRelativeTo(null);
+		setTitle("Sistema");
 		setResizable(false);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 537, 388);
+		setLocationRelativeTo(null);
 		
-		panel       = new JPanel();
-		sairButton  = new JButton("Sair");
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
 		
-		menuBar     = new JMenuBar();
+		opcoesMenu = new JMenu("Op\u00E7\u00F5es");
+		menuBar.add(opcoesMenu);
 		
-		menuOpcoes  = new JMenu("Opções");
-		menuAjuda   = new JMenu("Ajuda");
+		cadastrarUsuario = new JMenuItem("Cadastrar Usuario");
+		opcoesMenu.add(cadastrarUsuario);
 		
-		cadastrarCliente = new JMenuItem("Cadastrar Cliente");
-		cadastrarUsuario = new JMenuItem("Cadastrar Usuário");
-		cadastrarTema    = new JMenuItem("Cadastrar Tema");
-		cadastrarItens   = new JMenuItem("Cadastrar Itens");
-		sobre = new JMenuItem("Sobre");
+		cadastrarItem = new JMenuItem("Cadastrar Itens");
+		opcoesMenu.add(cadastrarItem);
 		
-		panel.add(sairButton);
+		cadastrarTema = new JMenuItem("Cadastrar Temas");
+		opcoesMenu.add(cadastrarTema);
 		
-		menuOpcoes.add(cadastrarCliente);
-		menuOpcoes.add(cadastrarUsuario);
-		menuOpcoes.add(cadastrarTema);
-		menuOpcoes.add(cadastrarItens);
-		menuAjuda.add(sobre);
+		buscarTema = new JMenuItem("Buscar Temas");
+		opcoesMenu.add(buscarTema);
 		
-		menuBar.add(menuOpcoes);
-		menuBar.add(menuAjuda);
+		BuscarItem = new JMenuItem("Buscar Itens");
+		opcoesMenu.add(BuscarItem);
 		
-		add(menuBar, BorderLayout.NORTH);
-		add(panel, BorderLayout.SOUTH);
+		ajudaMenu = new JMenu("Ajuda");
+		menuBar.add(ajudaMenu);
+		
+		sobreMenuItem = new JMenuItem("Sobre");
+		ajudaMenu.add(sobreMenuItem);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 102, 102));
+		panel.setBounds(0, 0, 531, 327);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 170, 511, 146);
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Id", "Cliente", "Endere\u00E7o", "Valor", "Data", "Hora Inicial", "Hora Final"
+			}
+		));
+		
+		scrollPane.setViewportView(table);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(10, 11, 46, 14);
+		panel.add(label);
+		
+		JButton deletarButton = new JButton("Deletar");
+		deletarButton.setBounds(10, 136, 89, 23);
+		panel.add(deletarButton);
+		
+		JButton novoCadastroButton = new JButton("Novo Cadastro");
+		novoCadastroButton.setBounds(109, 136, 120, 23);
+		panel.add(novoCadastroButton);
 	}
-
-	public JButton getSairButton() {
-		return sairButton;
+	public void preencherTabela() {
+		
 	}
-
-	public JMenuItem getCadastrarCliente() {
-		return cadastrarCliente;
-	}
-
 	public JMenuItem getCadastrarUsuario() {
 		return cadastrarUsuario;
+	}
+
+	public JMenuItem getCadastrarItem() {
+		return cadastrarItem;
 	}
 
 	public JMenuItem getCadastrarTema() {
 		return cadastrarTema;
 	}
 
-	public JMenuItem getSobre() {
-		return sobre;
+	public JMenuItem getSobreMenuItem() {
+		return sobreMenuItem;
 	}
-	
-	
-	
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
 }

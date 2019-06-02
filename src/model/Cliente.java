@@ -3,10 +3,10 @@ package model;
 public class Cliente {
 	
 	private String nome;
-	private int telefone;
+	private  String telefone;
 	private boolean antigo;
 	
-	public Cliente(String nome, int telefone, boolean antigo) {
+	public Cliente(String nome, String telefone, boolean antigo) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.antigo = antigo;
@@ -28,11 +28,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
