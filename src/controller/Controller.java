@@ -20,6 +20,7 @@ public class Controller implements ActionListener {
 	TelaCadastrarUsuario telaCadastrarUsuario;
 	TelaCadastrarItem telaCadastrarItem;
 	TelaCadastrarTema telaCadastrarTema;
+	TelaAlugar telaAlugar;
 	
 	public Controller() {
 		
@@ -29,6 +30,7 @@ public class Controller implements ActionListener {
 		telaCadastrarUsuario = new TelaCadastrarUsuario();
 		telaCadastrarItem = new TelaCadastrarItem();
 		telaCadastrarTema = new TelaCadastrarTema();
+		telaAlugar = new TelaAlugar();
 		
 		preencherTable();
 		controll();
@@ -42,6 +44,7 @@ public class Controller implements ActionListener {
 		telaSistema.getCadastrarUsuario().addActionListener(this);
 		telaSistema.getCadastrarTema().addActionListener(this);
 		telaSistema.getCadastrarItem().addActionListener(this);
+		telaSistema.getNovoAluguelButton().addActionListener(this);
 		
 		telaCadastrarUsuario.getCadastrarButton().addActionListener(this);
 		
@@ -49,8 +52,8 @@ public class Controller implements ActionListener {
 		
 		telaCadastrarTema.getCadastrarButton().addActionListener(this);
 		
-		
-		
+		telaAlugar.getAlugarButton().addActionListener(this);
+
 	}
 
 	@Override
@@ -84,8 +87,10 @@ public class Controller implements ActionListener {
 			
 		}else if (e.getSource() == telaSistema.getCadastrarItem()) {
 			telaCadastrarItem.setVisible(true);
-		} else if (e.getSource() == telaSistema.getCadastrarTema()) {
+		}else if (e.getSource() == telaSistema.getCadastrarTema()) {
 			telaCadastrarTema.setVisible(true);
+		}else if (e.getSource() == telaSistema.getNovoAluguelButton()) {
+			telaAlugar.setVisible(true);
 		}
 		
 		if (e.getSource() == telaCadastrarUsuario.getCadastrarButton()) {
@@ -147,6 +152,29 @@ public class Controller implements ActionListener {
 			
 		}
 		
+		if (e.getSource() == telaAlugar.getAlugarButton()) {
+			
+			String tema = telaAlugar.getTemaField().getText();
+			String cliente = telaAlugar.getClienteField().getText();
+			String endereco = telaAlugar.getEnderecoField().getText();
+			String data = telaAlugar.getDataField().getText();
+			double valor = Double.parseDouble(telaAlugar.getValorField().getText());
+			String hora0 = telaAlugar.getHoraField().getText();
+			String hora1 = telaAlugar.getHora2field().getText();	
+			
+			Festa festa = new Festa(tema, cliente, endereco, data, valor, hora0, hora1);
+			
+			try {
+				if (Create.addFesta(festa)) {
+					ExibirMensagem.Mensagem("Alugado!");
+				}
+			}catch (SQLException e1) {					
+				ExibirMensagem.Mensagem("Erro ao alugar!");
+				e1.printStackTrace();
+			}
+			
+			preencherTable();
+		}
 	}
 			
 
@@ -155,7 +183,7 @@ public class Controller implements ActionListener {
 		try {
 			
 			DefaultTableModel model = (DefaultTableModel) telaSistema.getTable().getModel();
-			
+			model.setNumRows(0);
 			List<Festa> festas = Read.festas();
 			
 			

@@ -89,7 +89,7 @@ public class Create {
 	}
 
 	public static boolean addItem(Item item) throws SQLException {
-    
+		
     	Conexao conexao = new Conexao();
     	
         PreparedStatement preparedStatement = 
@@ -115,14 +115,15 @@ public class Create {
     	Conexao conexao = new Conexao();
     	
         PreparedStatement preparedStatement = 
-        		conexao.getConnection().prepareStatement("INSERT INTO FESTAS(TEMA, ENDERECO, DATA, VALOR, HORA_INI, HORA_FIN)" + " VALUES (?,?,?,?,?,?)");
+        		conexao.getConnection().prepareStatement("INSERT INTO FESTAS(TEMA, CLIENTE, ENDERECO, DATA, VALOR, HORA_INI, HORA_FIN)" + " VALUES (?,?,?,?,?,?,?)");
         
         preparedStatement.setString(1, festa.getTema());
-        preparedStatement.setString(2, festa.getEndereco());
-        preparedStatement.setString(3, festa.getData());
-        preparedStatement.setDouble(4, festa.getValor());
-        preparedStatement.setString(5, festa.getHora0());
-        preparedStatement.setString(6, festa.getHora1());
+        preparedStatement.setString(2, festa.getCliente());
+        preparedStatement.setString(3, festa.getEndereco());
+        preparedStatement.setString(4, festa.getData());
+        preparedStatement.setDouble(5, festa.getValor());
+        preparedStatement.setString(6, festa.getHora0());
+        preparedStatement.setString(7, festa.getHora1());
       
         int registros = preparedStatement.executeUpdate();
         preparedStatement.close();

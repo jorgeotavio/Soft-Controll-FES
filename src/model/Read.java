@@ -80,31 +80,34 @@ public class Read {
 		}
 	}
 	
-	public static Festa buscarFesta(Festa festa) throws SQLException {
-		
-		Conexao conexao = new Conexao();
-		
-		String comando = "SELECT TEMA, CLIENTE, ENDERECO, DATA, VALOR, HORA_INI, HORA_FIN FROM FESTAS WHERE TEMA = ?";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		preparedStatement.setString(1, festa.getTema());
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		Festa newFesta = new Festa(resultSet.getInt("ID"),
-				resultSet.getString("TEMA"), 
-				resultSet.getString("ENDERECO"), 
-				resultSet.getString("CLIENTE"),
-				resultSet.getString("DATA"), 
-				resultSet.getDouble("VALOR"), 
-				resultSet.getString("HORA_INI"), 
-				resultSet.getString("HORA_FIN"));
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return newFesta;
+	public static Festa buscarFesta(Festa festa) {
+		try {
+			Conexao conexao = new Conexao();
+			
+			String comando = "SELECT ID, TEMA, CLIENTE, ENDERECO, DATA, VALOR, HORA_INI, HORA_FIN FROM FESTAS WHERE TEMA = ?";
+			
+			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+			
+			preparedStatement.setString(1, festa.getTema());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			Festa newFesta = new Festa(resultSet.getInt("ID"),
+					resultSet.getString("TEMA"), 
+					resultSet.getString("ENDERECO"), 
+					resultSet.getString("CLIENTE"),
+					resultSet.getString("DATA"), 
+					resultSet.getDouble("VALOR"), 
+					resultSet.getString("HORA_INI"), 
+					resultSet.getString("HORA_FIN"));
+			
+			preparedStatement.close();
+			Destrutor.destroyer(conexao);
+			
+			return newFesta;
+		}catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public static Cliente buscarCliente(Cliente cliente) throws SQLException {
