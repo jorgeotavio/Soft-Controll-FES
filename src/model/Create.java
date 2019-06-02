@@ -45,24 +45,26 @@ public class Create {
 	}
 	
 	public static boolean addUsuario(Usuario usuario) throws SQLException {
-        
-    	Conexao conexao = new Conexao();
-    	
-        PreparedStatement preparedStatement = 
-        		conexao.getConnection().prepareStatement("INSERT INTO USUARIOS (NOME, SENHA)" + " VALUES (?,?)");
-        
-        preparedStatement.setString(1, usuario.getNome());
-        preparedStatement.setString(2, usuario.getSenha());
-      
-        int registros = preparedStatement.executeUpdate();
-        preparedStatement.close();
-        
-        Destrutor.destroyer(conexao);
-        
-        if (registros == 1)
-            return true; 
-        else 
-            return false; 
+
+	    	Conexao conexao = new Conexao();
+	    	
+	        PreparedStatement preparedStatement = 
+	        		conexao.getConnection().prepareStatement("INSERT INTO USUARIOS(NOME, SENHA) VALUES (?,?)");
+	        
+	        preparedStatement.setString(1, usuario.getNome());
+	        preparedStatement.setString(2, usuario.getSenha());
+	        
+	        int registros = preparedStatement.executeUpdate();
+	        preparedStatement.close();
+	        
+	        Destrutor.destroyer(conexao);
+	        Destrutor.destroyer(preparedStatement);
+	        
+	        if (registros == 1)
+	            return true; 
+	        else 
+	            return false;
+	 
 	}
 
 	public static boolean addTema(Tema tema) throws SQLException {

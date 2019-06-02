@@ -9,6 +9,17 @@ public class Festa {
 	public Festa() {
 		
 	}
+	
+	public Festa(String tema, String cliente, String endereco, String  data, double valor, String hora0, String hora1) {
+		this.tema     = tema;
+		this.endereco = endereco;
+		this.cliente  = cliente;
+		this.hora0    = hora0;
+		this.hora1    = hora1;
+		this.data     = data;
+		this.valor    = valor;
+	}
+	
 	public Festa(int id, String tema, String cliente, String endereco, String  data, double valor, String hora0, String hora1) {
 		this.id 	  = id;
 		this.tema     = tema;

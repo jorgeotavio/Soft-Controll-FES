@@ -17,6 +17,11 @@ public class App {
 //		Create.addFesta(festa2);
 		
 //		System.out.println(Read.buscarFesta(festa2));
+//		Usuario user = new Usuario("admin", "admin");
+//		Create.addUsuario(user);
+		
+//		Item item = new Item("Boneca", 24);
+//		Create.addItem(item);
 		
 		Controller controller = new Controller();
 	}

@@ -8,64 +8,76 @@ import java.util.List;
 
 public class Read {
 	
-	public static Usuario buscarUsuario(Usuario usuario) throws SQLException {
-		
-		Conexao conexao = new Conexao();
-		
-		String comando = "SELECT NOME, SENHA FROM USUARIOS WHERE NOME = ?";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		preparedStatement.setString(1, usuario.getNome());
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return user;
-	}
-	
-	public static Tema buscarTema(Tema tema) throws SQLException {
+	public static Usuario buscarUsuario(Usuario usuario) {
+		try {
+			Conexao conexao = new Conexao();
 			
-		Conexao conexao = new Conexao();
+			String comando = "SELECT NOME, SENHA FROM USUARIOS WHERE NOME = ?";
+			
+			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+			
+			preparedStatement.setString(1, usuario.getNome());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
+			
+			preparedStatement.close();
+			Destrutor.destroyer(conexao);
+			
+			return user;
 		
-		String comando = "SELECT NOME FROM TEMAS WHERE NOME = ?";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		preparedStatement.setString(1, tema.getNome());
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		Tema tem = new Tema(resultSet.getString("NOME"));
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return tem;
+		}catch (Exception e) {
+			return null;
+		}
 	}
 	
-	public static Item buscarItem(Item item) throws SQLException {
-		
-		Conexao conexao = new Conexao();
-		
-		String comando = "SELECT NOME, QUANTIDADE FROM ITENS WHERE NOME = ?";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		preparedStatement.setString(1, item.getNome());
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		Item newItem = new Item(resultSet.getString("NOME"), resultSet.getInt("QUANTIDADE"));
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return newItem;
+	public static Tema buscarTema(Tema tema) {
+		try {
+			Conexao conexao = new Conexao();
+			
+			String comando = "SELECT NOME FROM TEMAS WHERE NOME = ?";
+			
+			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+			
+			preparedStatement.setString(1, tema.getNome());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			Tema tem = new Tema(resultSet.getString("NOME"));
+			
+			preparedStatement.close();
+			Destrutor.destroyer(conexao);
+			
+			return tem;
+			
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public static Item buscarItem(Item item) {
+		try {
+			Conexao conexao = new Conexao();
+			
+			String comando = "SELECT NOME, QUANTIDADE FROM ITENS WHERE NOME = ?";
+			
+			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+			
+			preparedStatement.setString(1, item.getNome());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			Item newItem = new Item(resultSet.getString("NOME"), resultSet.getInt("QUANTIDADE"));
+			
+			preparedStatement.close();
+			Destrutor.destroyer(conexao);
+			
+			return newItem;
+			
+		}catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public static Festa buscarFesta(Festa festa) throws SQLException {
