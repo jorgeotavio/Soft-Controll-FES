@@ -16,6 +16,8 @@ public class App {
 //		Create.addFesta(festa);
 //		Create.addFesta(festa2);
 		
+//		Delete.dellFesta(12);
+		
 //		System.out.println(Read.buscarFesta(festa2));
 //		Usuario user = new Usuario("admin", "admin");
 //		Create.addUsuario(user);

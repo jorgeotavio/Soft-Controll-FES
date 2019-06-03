@@ -21,6 +21,7 @@ public class Controller implements ActionListener {
 	TelaCadastrarItem telaCadastrarItem;
 	TelaCadastrarTema telaCadastrarTema;
 	TelaAlugar telaAlugar;
+	TelaDeletar telaDeletar;
 	
 	public Controller() {
 		
@@ -31,6 +32,7 @@ public class Controller implements ActionListener {
 		telaCadastrarItem = new TelaCadastrarItem();
 		telaCadastrarTema = new TelaCadastrarTema();
 		telaAlugar = new TelaAlugar();
+		telaDeletar = new TelaDeletar();
 		
 		preencherTable();
 		controll();
@@ -45,6 +47,7 @@ public class Controller implements ActionListener {
 		telaSistema.getCadastrarTema().addActionListener(this);
 		telaSistema.getCadastrarItem().addActionListener(this);
 		telaSistema.getNovoAluguelButton().addActionListener(this);
+		telaSistema.getExcluirButton().addActionListener(this);
 		
 		telaCadastrarUsuario.getCadastrarButton().addActionListener(this);
 		
@@ -53,6 +56,8 @@ public class Controller implements ActionListener {
 		telaCadastrarTema.getCadastrarButton().addActionListener(this);
 		
 		telaAlugar.getAlugarButton().addActionListener(this);
+		
+		telaDeletar.getBtnExcluir().addActionListener(this);
 
 	}
 
@@ -83,14 +88,15 @@ public class Controller implements ActionListener {
 			
 		
 		if (e.getSource() == telaSistema.getCadastrarUsuario()) {
-			telaCadastrarUsuario.setVisible(true);
-			
+			telaCadastrarUsuario.setVisible(true);			
 		}else if (e.getSource() == telaSistema.getCadastrarItem()) {
 			telaCadastrarItem.setVisible(true);
 		}else if (e.getSource() == telaSistema.getCadastrarTema()) {
 			telaCadastrarTema.setVisible(true);
 		}else if (e.getSource() == telaSistema.getNovoAluguelButton()) {
 			telaAlugar.setVisible(true);
+		}else if(e.getSource() == telaSistema.getExcluirButton()) {
+			telaDeletar.setVisible(true);
 		}
 		
 		if (e.getSource() == telaCadastrarUsuario.getCadastrarButton()) {
@@ -174,6 +180,18 @@ public class Controller implements ActionListener {
 			}
 			
 			preencherTable();
+		}
+		
+		if (e.getSource() == telaDeletar.getBtnExcluir()) {
+			
+			int id = Integer.parseInt(telaDeletar.getSpinner().getValue().toString());
+			try {
+				Delete.dellFesta(id);
+				ExibirMensagem.Mensagem("Deletado!");
+				preencherTable();
+			} catch(Exception e1) {
+				ExibirMensagem.Mensagem("Erro ao Deletar!");
+			}
 		}
 	}
 			

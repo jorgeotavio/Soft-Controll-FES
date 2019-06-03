@@ -85,7 +85,6 @@ public class TelaSistema extends JFrame {
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Id", "Endere\u00E7o", "Cliente", "Tema", "Valor", "Data", "Hora Inicial", "Hora Final"
