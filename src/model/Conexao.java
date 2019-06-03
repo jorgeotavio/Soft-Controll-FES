@@ -11,7 +11,7 @@ public class Conexao {
 	public Conexao() {
 		
 		try{
-			url = "jdbc:sqlite:d:/GitHub/Soft-Controll-FES/db/banco.db";
+			url = "jdbc:sqlite:c:Soft-Controll-FES/db/banco.db";
 			
 			Class.forName("org.sqlite.JDBC");
 			
