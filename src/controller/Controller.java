@@ -22,6 +22,7 @@ public class Controller implements ActionListener {
 	TelaCadastrarTema telaCadastrarTema;
 	TelaAlugar telaAlugar;
 	TelaDeletar telaDeletar;
+	TelaSobre telaSobre;
 	
 	public Controller() {
 		
@@ -33,6 +34,7 @@ public class Controller implements ActionListener {
 		telaCadastrarTema = new TelaCadastrarTema();
 		telaAlugar = new TelaAlugar();
 		telaDeletar = new TelaDeletar();
+		telaSobre = new TelaSobre();
 		
 		preencherTable();
 		controll();
@@ -48,12 +50,15 @@ public class Controller implements ActionListener {
 		telaSistema.getCadastrarItem().addActionListener(this);
 		telaSistema.getNovoAluguelButton().addActionListener(this);
 		telaSistema.getExcluirButton().addActionListener(this);
+		telaSistema.getSobreMenuItem().addActionListener(this);
 		
 		telaCadastrarUsuario.getCadastrarButton().addActionListener(this);
 		
 		telaCadastrarItem.getCadastrarButton().addActionListener(this);
 		
 		telaCadastrarTema.getCadastrarButton().addActionListener(this);
+		
+		telaSobre.getFecharButton().addActionListener(this);
 		
 		telaAlugar.getAlugarButton().addActionListener(this);
 		
@@ -85,7 +90,7 @@ public class Controller implements ActionListener {
 				ExibirMensagem.Mensagem("Usuario ou senha incorretos!");
 			}
 		}	
-			
+		
 		
 		if (e.getSource() == telaSistema.getCadastrarUsuario()) {
 			telaCadastrarUsuario.setVisible(true);			
@@ -156,6 +161,14 @@ public class Controller implements ActionListener {
 			}else if (tema2.getNome().equalsIgnoreCase(tema.getNome()))
 				ExibirMensagem.Mensagem("Tema já existe");
 			
+		}
+		
+		if (e.getSource() == telaSistema.getSobreMenuItem()) {
+			telaSobre.setVisible(true);
+		}
+		
+		if (e.getSource() == telaSobre.getFecharButton()) {
+			telaSobre.setVisible(false);
 		}
 		
 		if (e.getSource() == telaAlugar.getAlugarButton()) {
