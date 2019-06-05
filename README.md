@@ -2,7 +2,7 @@
 
 Próximas implementações:
 
-1- Adicionar o delete em todas as partes;
+1- Adicionar o delete em todas as partes;  
 2- Adicionar o update em todas a partes;
 3- Aprimorar a informaçoes recebidas;
 4- Aprimorar as telas;
