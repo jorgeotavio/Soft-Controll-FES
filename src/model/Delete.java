@@ -1,82 +1,69 @@
 package model;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Delete {
 	
-	public static Usuario buscarUsuario(Usuario usuario) {
+	public static boolean dellUsuario(int id) {
 		try {
 			Conexao conexao = new Conexao();
 			
-			String comando = "SELECT NOME, SENHA FROM USUARIOS WHERE NOME = ?";
+			String comando = "DELETE FROM FESTAS WHERE ID = ?";
 			
 			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
 			
-			preparedStatement.setString(1, usuario.getNome());
+			preparedStatement.setInt(1, id);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
+			preparedStatement.executeUpdate();
 			
 			preparedStatement.close();
 			Destrutor.destroyer(conexao);
 			
-			return user;
-		
+			return true;
 		}catch (Exception e) {
-			return null;
+			return false;
 		}
 	}
 	
-	public static Tema buscarTema(Tema tema) {
+	public static boolean dellTema(int id) {
 		try {
 			Conexao conexao = new Conexao();
 			
-			String comando = "SELECT NOME FROM TEMAS WHERE NOME = ?";
+			String comando = "DELETE FROM TEMAS WHERE ID = ?";
 			
 			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
 			
-			preparedStatement.setString(1, tema.getNome());
+			preparedStatement.setInt(1, id);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			Tema tem = new Tema(resultSet.getString("NOME"));
+			preparedStatement.executeUpdate();
 			
 			preparedStatement.close();
 			Destrutor.destroyer(conexao);
 			
-			return tem;
-			
+			return true;
 		}catch (Exception e) {
-			return null;
+			return false;
 		}
 	}
 	
-	public static Item buscarItem(Item item) {
+	public static boolean dellItema(int id) {
 		try {
 			Conexao conexao = new Conexao();
 			
-			String comando = "SELECT NOME, QUANTIDADE FROM ITENS WHERE NOME = ?";
+			String comando = "DELETE FROM ITENS WHERE ID = ?";
 			
 			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
 			
-			preparedStatement.setString(1, item.getNome());
+			preparedStatement.setInt(1, id);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			Item newItem = new Item(resultSet.getString("NOME"), resultSet.getInt("QUANTIDADE"));
+			preparedStatement.executeUpdate();
 			
 			preparedStatement.close();
 			Destrutor.destroyer(conexao);
 			
-			return newItem;
-			
+			return true;
 		}catch (Exception e) {
-			return null;
+			return false;
 		}
 	}
 	
@@ -101,57 +88,25 @@ public class Delete {
 		}
 	}
 	
-	public static Cliente buscarCliente(Cliente cliente) throws SQLException {
-		
-		Conexao conexao = new Conexao();
-		
-		String comando = "SELECT NOME, TELEFONE, ANTIGO FROM ITENS WHERE NOME = ?";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		preparedStatement.setString(1, cliente.getNome());
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		Cliente newCliente = new Cliente(resultSet.getString("NOME"), resultSet.getString("TELEFONE"), resultSet.getBoolean("ANTIGO"));
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return newCliente;
-	}
 	
-	public static List<Festa> festas() throws SQLException {
-		
-		Conexao conexao = new Conexao();
-		
-		List<Festa> festas = new ArrayList<Festa>();
-		
-		String comando = "SELECT * FROM FESTAS";
-		
-		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
-		
-		ResultSet resultSet = preparedStatement.executeQuery();
-		
-		while(resultSet.next()) {
+	public static boolean dellCliente(int id) {
+		try {
+			Conexao conexao = new Conexao();
 			
-			Festa festa = new Festa(resultSet.getInt("ID"),
-					resultSet.getString("TEMA"), 
-					resultSet.getString("ENDERECO"),
-					resultSet.getString("CLIENTE"),
-					resultSet.getString("DATA"), 
-					resultSet.getDouble("VALOR"), 
-					resultSet.getString("HORA_INI"), 
-					resultSet.getString("HORA_FIN"));
+			String comando = "DELETE FROM CLIENTES WHERE ID = ?";
 			
-			festas.add(festa);
+			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+			
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.executeUpdate();
+			
+			preparedStatement.close();
+			Destrutor.destroyer(conexao);
+			
+			return true;
+		}catch (Exception e) {
+			return false;
 		}
-		
-		
-		preparedStatement.close();
-		Destrutor.destroyer(conexao);
-		
-		return festas;
-		
 	}
 }

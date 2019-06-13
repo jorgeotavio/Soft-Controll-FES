@@ -8,10 +8,10 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.SystemColor;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+@SuppressWarnings("serial")
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;

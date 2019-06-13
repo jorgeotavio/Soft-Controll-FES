@@ -185,6 +185,7 @@ public class Controller implements ActionListener {
 			
 			try {
 				if (Create.addFesta(festa)) {
+					preencherTable();
 					ExibirMensagem.Mensagem("Alugado!");
 				}
 			}catch (SQLException e1) {					
@@ -192,7 +193,7 @@ public class Controller implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			preencherTable();
+			
 		}
 		
 		if (e.getSource() == telaDeletar.getBtnExcluir()) {
@@ -200,8 +201,8 @@ public class Controller implements ActionListener {
 			int id = Integer.parseInt(telaDeletar.getSpinner().getValue().toString());
 			try {
 				Delete.dellFesta(id);
-				ExibirMensagem.Mensagem("Deletado!");
 				preencherTable();
+				ExibirMensagem.Mensagem("Deletado!");
 			} catch(Exception e1) {
 				ExibirMensagem.Mensagem("Erro ao Deletar!");
 			}
