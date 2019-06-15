@@ -27,6 +27,9 @@ public class TelaSistema extends JFrame {
 	
 	private JTable table;
 	private JButton novoAluguelButton, excluirButton ;
+	private JMenuItem ExcluirUsuarioItem;
+	private JMenuItem ExcluirItemItem;
+	private JMenuItem ExcluirTemaItem;
 
 	public TelaSistema() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaSistema.class.getResource("/img/icons8-gr\u00E1fico-positivo-16.png")));
@@ -59,6 +62,18 @@ public class TelaSistema extends JFrame {
 		cadastrarTema = new JMenuItem("Cadastrar Temas");
 		cadastrarTema.setIcon(new ImageIcon(TelaSistema.class.getResource("/img/icons8-mais-16.png")));
 		opcoesMenu.add(cadastrarTema);
+		
+		ExcluirUsuarioItem = new JMenuItem("Excluir Usu\u00E1rio");
+		ExcluirUsuarioItem.setIcon(new ImageIcon(TelaSistema.class.getResource("/img/icons8-excluir-16.png")));
+		opcoesMenu.add(ExcluirUsuarioItem);
+		
+		ExcluirItemItem = new JMenuItem("Excluir Item");
+		ExcluirItemItem.setIcon(new ImageIcon(TelaSistema.class.getResource("/img/icons8-excluir-16.png")));
+		opcoesMenu.add(ExcluirItemItem);
+		
+		ExcluirTemaItem = new JMenuItem("Excluir Tema");
+		ExcluirTemaItem.setIcon(new ImageIcon(TelaSistema.class.getResource("/img/icons8-excluir-16.png")));
+		opcoesMenu.add(ExcluirTemaItem);
 		
 		ajudaMenu = new JMenu("Ajuda");
 		ajudaMenu.setForeground(new Color(255, 255, 255));
@@ -109,7 +124,7 @@ public class TelaSistema extends JFrame {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(TelaSistema.class.getResource("/img/caixa.png")));
-		label_1.setBounds(348, 0, 269, 211);
+		label_1.setBounds(307, -47, 315, 310);
 		panel.add(label_1);
 	}
 	

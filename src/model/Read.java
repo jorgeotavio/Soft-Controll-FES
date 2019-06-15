@@ -163,4 +163,88 @@ public class Read {
 		return festas;
 		
 	}
+	
+	public static List<Usuario> usuarios() throws SQLException {
+			
+		Conexao conexao = new Conexao();
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		String comando = "SELECT * FROM USUARIOS";
+		
+		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()) {
+			
+			Usuario usuario = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
+			usuarios.add(usuario);
+		
+		}
+		
+		
+		preparedStatement.close();
+		Destrutor.destroyer(conexao);
+		
+		return usuarios;
+		
+	}
+	
+	public static List<Cliente> clientes() throws SQLException {
+		
+		Conexao conexao = new Conexao();
+		
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		
+		String comando = "SELECT * FROM CLIENTES";
+		
+		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()) {
+			
+			Cliente cliente = new Cliente(resultSet.getString("NOME"), 
+							resultSet.getString("TELEFONE"), 
+							resultSet.getBoolean("ANTIGO"));
+			clientes.add(cliente);
+		
+		}
+		
+		
+		preparedStatement.close();
+		Destrutor.destroyer(conexao);
+		
+		return clientes;
+		
+	}
+	
+	public static List<Tema> temas() throws SQLException {
+		
+		Conexao conexao = new Conexao();
+		
+		List<Tema> temas = new ArrayList<Tema>();
+		
+		String comando = "SELECT * FROM TEMAS";
+		
+		PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()) {
+			
+			Tema tema = new Tema(resultSet.getString("NOME"));
+			temas.add(tema);
+		
+		}
+		
+		
+		preparedStatement.close();
+		Destrutor.destroyer(conexao);
+		
+		return temas;
+		
+	}
+	
 }

@@ -28,8 +28,6 @@ public class TelaAlugar extends JFrame {
 	private JLabel valorLabel;
 	private JLabel lblHoraDeInicio;
 	private JLabel lblHoraDoFim;
-	private JTextField temaField;
-	private JTextField clienteField;
 	private JTextField enderecoField;
 	private JFormattedTextField horaField;
 	private JFormattedTextField hora2field;
@@ -37,6 +35,8 @@ public class TelaAlugar extends JFrame {
 	private JFormattedTextField dataField;
 	private MaskFormatter horaMask, horaMask2, dataMask;
 	private JButton alugarButton;
+	private JComboBox temaCB;
+	private JComboBox clienteCB;
 
 	public TelaAlugar() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAlugar.class.getResource("/img/icons8-gr\u00E1fico-positivo-16.png")));
@@ -87,38 +87,28 @@ public class TelaAlugar extends JFrame {
 		lblHoraDoFim.setBounds(26, 164, 101, 14);
 		panel.add(lblHoraDoFim);
 		
-		temaField = new JTextField();
-		temaField.setBounds(141, 8, 86, 20);
-		panel.add(temaField);
-		temaField.setColumns(10);
-		
-		clienteField = new JTextField();
-		clienteField.setBounds(141, 33, 86, 20);
-		panel.add(clienteField);
-		clienteField.setColumns(10);
-		
 		enderecoField = new JTextField();
-		enderecoField.setBounds(141, 83, 86, 20);
+		enderecoField.setBounds(141, 86, 86, 20);
 		panel.add(enderecoField);
 		enderecoField.setColumns(10);
 		
 		horaField = new JFormattedTextField();
-		horaField.setBounds(141, 133, 86, 20);
+		horaField.setBounds(141, 136, 86, 20);
 		panel.add(horaField);
 		horaField.setColumns(10);
 		
 		hora2field = new JFormattedTextField();
-		hora2field.setBounds(141, 158, 86, 20);
+		hora2field.setBounds(141, 161, 86, 20);
 		panel.add(hora2field);
 		hora2field.setColumns(10);
 		
 		valorField = new JTextField();
-		valorField.setBounds(141, 108, 86, 20);
+		valorField.setBounds(141, 111, 86, 20);
 		panel.add(valorField);
 		valorField.setColumns(10);
 		
 		dataField = new JFormattedTextField();
-		dataField.setBounds(141, 58, 86, 20);
+		dataField.setBounds(141, 61, 86, 20);
 		panel.add(dataField);
 		dataField.setColumns(10);
 		
@@ -140,20 +130,20 @@ public class TelaAlugar extends JFrame {
 			horaMask.install(horaField);
 			horaMask2.install(hora2field);
 			dataMask.install(dataField);
+			
+			temaCB = new JComboBox();
+			temaCB.setBounds(141, 11, 86, 20);
+			panel.add(temaCB);
+			
+			clienteCB = new JComboBox();
+			clienteCB.setBounds(141, 36, 86, 20);
+			panel.add(clienteCB);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
 		setLocationRelativeTo(null);
 		setVisible(false);
-	}
-
-	public JTextField getTemaField() {
-		return temaField;
-	}
-
-	public JTextField getClienteField() {
-		return clienteField;
 	}
 
 	public JTextField getEnderecoField() {
@@ -178,6 +168,42 @@ public class TelaAlugar extends JFrame {
 
 	public JButton getAlugarButton() {
 		return alugarButton;
+	}
+
+	public void setEnderecoField(JTextField enderecoField) {
+		this.enderecoField = enderecoField;
+	}
+
+	public void setHoraField(JFormattedTextField horaField) {
+		this.horaField = horaField;
+	}
+
+	public void setHora2field(JFormattedTextField hora2field) {
+		this.hora2field = hora2field;
+	}
+
+	public void setValorField(JTextField valorField) {
+		this.valorField = valorField;
+	}
+
+	public void setDataField(JFormattedTextField dataField) {
+		this.dataField = dataField;
+	}
+
+	public JComboBox getTemaCB() {
+		return temaCB;
+	}
+
+	public void setTemaCB(JComboBox temaCB) {
+		this.temaCB = temaCB;
+	}
+
+	public JComboBox getClienteCB() {
+		return clienteCB;
+	}
+
+	public void setClienteCB(JComboBox clienteCB) {
+		this.clienteCB = clienteCB;
 	}
 	
 	

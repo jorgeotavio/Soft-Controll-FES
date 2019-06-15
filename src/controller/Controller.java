@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import model.*;
@@ -36,6 +37,9 @@ public class Controller implements ActionListener {
 		telaDeletar = new TelaDeletar();
 		telaSobre = new TelaSobre();
 		
+		preencherTemas();
+		preencherClientes();
+		preencherLogin();
 		preencherTable();
 		controll();
 		
@@ -74,7 +78,7 @@ public class Controller implements ActionListener {
 		
 		if (e.getSource() == telaLogin.getBtnLogar()) {
 			
-			usuario = new Usuario(telaLogin.getTextField().getText(), telaLogin.getPasswordField().getText());
+			usuario = new Usuario(telaLogin.getUserCB().getSelectedItem().toString(), telaLogin.getPasswordField().getText());
 			usuario2 = Read.buscarUsuario(usuario);
 			
 			if (usuario2 == null) { 
@@ -173,26 +177,37 @@ public class Controller implements ActionListener {
 		
 		if (e.getSource() == telaAlugar.getAlugarButton()) {
 			
-			String tema = telaAlugar.getTemaField().getText();
-			String cliente = telaAlugar.getClienteField().getText();
+			String tema = telaAlugar.getTemaCB().toString();
+			String cliente = telaAlugar.getTemaCB().toString();
 			String endereco = telaAlugar.getEnderecoField().getText();
 			String data = telaAlugar.getDataField().getText();
-			double valor = Double.parseDouble(telaAlugar.getValorField().getText());
 			String hora0 = telaAlugar.getHoraField().getText();
 			String hora1 = telaAlugar.getHora2field().getText();	
 			
-			Festa festa = new Festa(tema, cliente, endereco, data, valor, hora0, hora1);
-			
 			try {
-				if (Create.addFesta(festa)) {
-					preencherTable();
-					ExibirMensagem.Mensagem("Alugado!");
-				}
-			}catch (SQLException e1) {					
-				ExibirMensagem.Mensagem("Erro ao alugar!");
-				e1.printStackTrace();
-			}
+				double valor = Double.parseDouble(telaAlugar.getValorField().getText());
 			
+				Festa festa = new Festa(tema, cliente, endereco, data, valor, hora0, hora1);
+				
+				try {
+					if (Create.addFesta(festa)) {
+						preencherTable();
+						limparCampos(telaAlugar.getDataField());
+						limparCampos(telaAlugar.getEnderecoField());
+						limparCampos(telaAlugar.getValorField());
+						limparCampos(telaAlugar.getHoraField());
+						limparCampos(telaAlugar.getHora2field());
+						ExibirMensagem.Mensagem("Alugado!");
+					}
+				}catch (SQLException e1) {					
+					ExibirMensagem.Mensagem("Erro ao alugar!");
+					e1.printStackTrace();
+				}
+				
+			}catch(NumberFormatException e1) {
+				limparCampos(telaAlugar.getValorField());
+				ExibirMensagem.Mensagem("Só são permitido valores válidos no campo: Valor");
+			}
 			
 		}
 		
@@ -208,9 +223,12 @@ public class Controller implements ActionListener {
 			}
 		}
 	}
-			
+	
+	private void limparCampos(JTextField jtf) {
+		jtf.setText("");
+	}
 
-	public void preencherTable() {
+	private void preencherTable() {
 		
 		try {
 			
@@ -240,4 +258,60 @@ public class Controller implements ActionListener {
 		}
 	}
 	
+	private void preencherLogin() {
+		try {
+			
+			List<Usuario> usuarios = Read.usuarios();
+			
+			for (Usuario u : usuarios) {
+				
+				telaLogin.getUserCB().addItem(u.getNome());
+				
+			}
+			
+		}catch (Exception e) {}
+	}
+	
+	private void preencherTemas() {
+		try {
+			
+			List<Tema> temas = Read.temas();
+			
+			for (Tema t : temas) {
+				
+				telaAlugar.getTemaCB().addItem(t.getNome());
+				
+			}
+			
+		}catch (Exception e) {}
+	}
+	
+	private void preencherClientes() {
+		try {
+			
+			List<Cliente> clientes = Read.clientes();
+			
+			for (Cliente c : clientes) {
+				
+				telaAlugar.getClienteCB().addItem(c.getNome());
+				
+			}
+			
+		}catch (Exception e) {}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

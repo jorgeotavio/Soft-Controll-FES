@@ -4,20 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnLogar;
+	private JComboBox<Object> userCB;
 	
 	public TelaLogin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/img/icons8-gr\u00E1fico-positivo-16.png")));
@@ -45,11 +45,6 @@ public class TelaLogin extends JFrame {
 		lblLogin.setBounds(10, 29, 39, 14);
 		panel.add(lblLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(64, 26, 125, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setForeground(new Color(255, 255, 255));
 		lblSenha.setFont(new Font("Calibri", Font.PLAIN, 16));
@@ -66,21 +61,26 @@ public class TelaLogin extends JFrame {
 		btnLogar.setIcon(null);
 		btnLogar.setBounds(59, 94, 89, 23);
 		panel.add(btnLogar);
+		
+		userCB = new JComboBox<Object>();
+		userCB.setToolTipText("");
+		userCB.setBounds(64, 26, 125, 20);
+		panel.add(userCB);
 	}
-
-	public JTextField getTextField() {
-		return textField;
-	}
-
+	
 	public JPasswordField getPasswordField() {
 		return passwordField;
+	}
+
+	public JComboBox getUserCB() {
+		return userCB;
+	}
+
+	public void setUserCB(JComboBox userCB) {
+		this.userCB = userCB;
 	}
 
 	public JButton getBtnLogar() {
 		return btnLogar;
 	}
-	
-	
-	
-	
 }
