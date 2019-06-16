@@ -111,21 +111,24 @@ public class Controller implements ActionListener {
 		if (e.getSource() == telaCadastrarUsuario.getCadastrarButton()) {
 			
 			usuario = new Usuario(telaCadastrarUsuario.getNomeField().getText(), 
-					telaCadastrarUsuario.getSenhaField().getText());
+					telaCadastrarUsuario.getSenhaField().getText(), telaCadastrarUsuario.getCpfField().getText());
+
+			usuario2 = Read.buscarUsuario(usuario);
 			
-			usuario2 = Read.buscarUsuario(usuario2);
-			telaCadastrarUsuario.setVisible(true);
-		
 			if (usuario2 == null) {
 				try {
-					if (Create.addUsuario(usuario))
+					if (Create.addUsuario(usuario)){
+						limparCampos(telaCadastrarUsuario.getNomeField());
+						limparCampos(telaCadastrarUsuario.getSenhaField());
+						limparCampos(telaCadastrarUsuario.getConfirmarField());
+						limparCampos(telaCadastrarUsuario.getCpfField());
 						ExibirMensagem.Mensagem("Cadastrado com sucesso");
+					}
 				} catch (SQLException e1) {					
 					ExibirMensagem.Mensagem("Erro");
 					e1.printStackTrace();
 				}
-			}else if (usuario2.getNome().equalsIgnoreCase(usuario.getNome()))
-				ExibirMensagem.Mensagem("Usuario já existe");
+			}
 		}
 		
 		if (e.getSource() == telaCadastrarItem.getCadastrarButton()) {

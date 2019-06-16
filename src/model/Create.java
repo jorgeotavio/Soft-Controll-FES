@@ -11,7 +11,8 @@ public class Create {
 		statement.execute("CREATE TABLE IF NOT EXISTS USUARIOS("
 						+ "ID 		INTEGER primary key autoincrement,"
 						+ "NOME 	VARCHAR, "
-						+ "SENHA 	VARCHAR"
+						+ "SENHA 	VARCHAR,"
+						+ "CPF      VARCHAR"
 						+ ")");
 		
 		statement.execute("CREATE TABLE IF NOT EXISTS TEMAS("
@@ -49,10 +50,11 @@ public class Create {
 	    	Conexao conexao = new Conexao();
 	    	
 	        PreparedStatement preparedStatement = 
-	        		conexao.getConnection().prepareStatement("INSERT INTO USUARIOS(NOME, SENHA) VALUES (?,?)");
+	        		conexao.getConnection().prepareStatement("INSERT INTO USUARIOS(NOME, SENHA, CPF) VALUES (?,?,?)");
 	        
 	        preparedStatement.setString(1, usuario.getNome());
 	        preparedStatement.setString(2, usuario.getSenha());
+	        preparedStatement.setString(3, usuario.getCpf());
 	        
 	        int registros = preparedStatement.executeUpdate();
 	        preparedStatement.close();

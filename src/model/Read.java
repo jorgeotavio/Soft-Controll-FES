@@ -12,7 +12,7 @@ public class Read {
 		try {
 			Conexao conexao = new Conexao();
 			
-			String comando = "SELECT NOME, SENHA FROM USUARIOS WHERE NOME = ?";
+			String comando = "SELECT NOME, SENHA, CPF FROM USUARIOS WHERE NOME = ?";
 			
 			PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(comando);
 			
@@ -20,7 +20,7 @@ public class Read {
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
-			Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"));
+			Usuario user = new Usuario(resultSet.getString("NOME"), resultSet.getString("SENHA"), resultSet.getString("CPF"));
 			
 			preparedStatement.close();
 			Destrutor.destroyer(conexao);
